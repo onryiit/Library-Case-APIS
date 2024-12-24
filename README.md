@@ -4,6 +4,12 @@
 
 The purpose of this project is to make a small library application. So that repostries provided API for that application.
 
+## Technologies Used in the Project
+
+1. `Node.js`
+2. `Express.js`
+3. `Firebase Cloud`
+
 ## How we can run This Project ? 
 
 1. Clone this project in your local
