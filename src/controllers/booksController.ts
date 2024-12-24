@@ -64,7 +64,7 @@ export const updateOwner = (req: Request, res: Response) => {
   const owner = req.body.owner || "";
 
   if (owner === undefined || owner === null) {
-    return res.status(400).send("Owner is required");
+    return res.status(400).json({ error: "Owner is required" });
   }
 
   booksRef.child(bookId).once("value", (snapshot) => {
@@ -79,16 +79,17 @@ export const updateOwner = (req: Request, res: Response) => {
           .child(bookId)
           .update({ book_detail: bookDetail })
           .then(() => {
-            res.status(200).send("Owner updated successfully");
+            res.status(200).json({ message: "Owner updated successfully" });
           })
           .catch((error) => {
-            res.status(500).send("Error updating owner: " + error.message);
+            res.status(500).json({ error: "Error updating owner", details: error.message });
           });
       } else {
-        res.status(404).send("Book details not found");
+        res.status(404).json({ error: "Book details not found" });
       }
     } else {
-      res.status(404).send("Book not found");
+      res.status(404).json({ error: "Book not found" });
     }
   });
 };
+
